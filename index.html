@@ -1,0 +1,655 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f3f0e9" />
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#111313" />
+  <meta name="description" content="Ashfaq Raza — software developer working with .NET, SQL Server, JavaScript and responsive web technologies." />
+  <link rel="icon" href="data:," />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <title>Ashfaq Raza — Software Developer</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #f3f0e9;
+      --surface: #fffdf8;
+      --surface-2: #e8e4dc;
+      --ink: #181b1b;
+      --muted: #5a5e5d;
+      --line: #c7c2b8;
+      --accent: #e34a28;
+      --accent-strong: #b92f15;
+      --accent-soft: #f8d6cc;
+      --signal: #0f756e;
+      --code: #17211f;
+      --code-ink: #d6e5dc;
+      --code-muted: #8da49a;
+      --shadow: 0 18px 42px rgba(44, 36, 28, .10);
+      --sans: "IBM Plex Sans", system-ui, sans-serif;
+      --mono: "IBM Plex Mono", ui-monospace, monospace;
+      --max: 1180px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #111313;
+        --surface: #191c1c;
+        --surface-2: #242828;
+        --ink: #f0eee8;
+        --muted: #b7b8b3;
+        --line: #3a3f3d;
+        --accent: #ff704f;
+        --accent-strong: #ff8b70;
+        --accent-soft: #54251c;
+        --signal: #5cc9bd;
+        --code: #0c1010;
+        --code-ink: #d8e7df;
+        --code-muted: #87a097;
+        --shadow: 0 18px 42px rgba(0, 0, 0, .28);
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-width: 0;
+      overflow-x: hidden;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    ::selection { background: var(--accent); color: white; }
+
+    .skip-link {
+      position: fixed;
+      top: 12px;
+      left: 12px;
+      z-index: 100;
+      padding: 10px 14px;
+      background: var(--ink);
+      color: var(--bg);
+      transform: translateY(-150%);
+      transition: transform .2s ease;
+    }
+    .skip-link:focus { transform: translateY(0); }
+
+    .site-nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid color-mix(in srgb, var(--line) 72%, transparent);
+      background: color-mix(in srgb, var(--bg) 91%, transparent);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav-inner {
+      width: min(calc(100% - 40px), var(--max));
+      min-height: 58px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .nav-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      font: 500 12px/1.2 var(--mono);
+      letter-spacing: .02em;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .pulse {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--signal);
+      box-shadow: 0 0 0 4px color-mix(in srgb, var(--signal) 18%, transparent);
+    }
+    .nav-links { display: flex; align-items: center; gap: 24px; }
+    .nav-links a {
+      font: 500 13px/1 var(--mono);
+      color: var(--muted);
+      text-decoration: none;
+    }
+    .nav-links a:hover, .nav-links a:focus-visible { color: var(--accent); }
+
+    main { overflow: hidden; }
+    .shell {
+      width: min(calc(100% - 40px), var(--max));
+      margin-inline: auto;
+    }
+
+    .hero {
+      min-height: min(760px, calc(100vh - 58px));
+      padding: clamp(64px, 10vw, 132px) 0 76px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(310px, .65fr);
+      gap: clamp(48px, 8vw, 110px);
+      align-items: center;
+    }
+
+    .hero-kicker {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      margin: 0 0 24px;
+      color: var(--accent);
+      font: 600 13px/1.4 var(--mono);
+    }
+    .hero-kicker::before {
+      content: "";
+      width: 38px;
+      height: 2px;
+      background: currentColor;
+    }
+
+    h1 {
+      max-width: 810px;
+      margin: 0;
+      font-size: clamp(42px, 7vw, 88px);
+      line-height: .98;
+      letter-spacing: -.055em;
+      font-weight: 600;
+    }
+    h1 span { display: block; color: var(--muted); font-weight: 400; }
+
+    .hero-copy {
+      max-width: 670px;
+      margin: 30px 0 0;
+      font-size: clamp(18px, 2vw, 22px);
+      line-height: 1.55;
+      color: var(--muted);
+    }
+    .hero-copy strong { color: var(--ink); font-weight: 600; }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 36px;
+    }
+    .button {
+      min-height: 48px;
+      padding: 0 18px;
+      border: 1px solid var(--ink);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: var(--ink);
+      color: var(--bg);
+      text-decoration: none;
+      font: 600 13px/1 var(--mono);
+      cursor: pointer;
+      transition: background .2s ease, color .2s ease, border-color .2s ease;
+    }
+    .button svg { width: 17px; height: 17px; }
+    .button:hover, .button:focus-visible { background: var(--accent); border-color: var(--accent); color: white; }
+    .button.secondary { background: transparent; color: var(--ink); border-color: var(--line); }
+    .button.secondary:hover, .button.secondary:focus-visible { border-color: var(--ink); }
+
+    .terminal {
+      align-self: center;
+      background: var(--code);
+      color: var(--code-ink);
+      box-shadow: var(--shadow);
+      border-top: 4px solid var(--accent);
+    }
+    .terminal-bar {
+      padding: 13px 17px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #2a3733;
+      color: var(--code-muted);
+      font: 500 11px/1 var(--mono);
+    }
+    .terminal-dots { display: flex; gap: 6px; }
+    .terminal-dots i { width: 7px; height: 7px; border-radius: 50%; background: #53635c; }
+    .terminal-body { padding: 25px 22px 28px; font: 13px/1.85 var(--mono); }
+    .terminal-body p { margin: 0 0 10px; }
+    .terminal-body p:last-child { margin-bottom: 0; }
+    .prompt { color: #ff8265; }
+    .key { color: #78cbbd; }
+    .value { color: #f3df9a; }
+    .comment { color: var(--code-muted); }
+
+    .section {
+      padding: clamp(72px, 9vw, 120px) 0;
+      border-top: 1px solid var(--line);
+    }
+    .section-head {
+      margin-bottom: clamp(36px, 6vw, 66px);
+      display: grid;
+      grid-template-columns: 150px minmax(0, 1fr);
+      gap: 30px;
+      align-items: start;
+    }
+    .section-index { margin: 9px 0 0; color: var(--accent); font: 600 12px/1 var(--mono); }
+    h2 {
+      max-width: 720px;
+      margin: 0;
+      font-size: clamp(32px, 5vw, 56px);
+      line-height: 1.08;
+      letter-spacing: -.035em;
+      font-weight: 500;
+    }
+
+    .projects { display: grid; gap: 22px; }
+    .project {
+      display: grid;
+      grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr);
+      min-height: 360px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+    }
+    .project:nth-child(even) .project-visual { order: 2; }
+    .project-visual {
+      min-height: 290px;
+      padding: clamp(25px, 4vw, 48px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      position: relative;
+      background: #183b37;
+      color: #eff9f4;
+    }
+    .project:nth-child(2) .project-visual { background: #462117; }
+    .project:nth-child(3) .project-visual { background: #23313d; }
+    .visual-label { position: relative; z-index: 2; font: 500 12px/1.4 var(--mono); opacity: .78; }
+    .visual-mark {
+      position: relative;
+      z-index: 2;
+      font: 600 clamp(56px, 9vw, 112px)/.8 var(--mono);
+      letter-spacing: -.08em;
+    }
+    .project-visual::after {
+      content: "";
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      right: -80px;
+      bottom: -100px;
+      border: 1px solid rgba(255,255,255,.25);
+      border-radius: 50%;
+      box-shadow: 0 0 0 32px rgba(255,255,255,.05), 0 0 0 65px rgba(255,255,255,.035);
+    }
+    .project-body {
+      padding: clamp(28px, 5vw, 58px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+    }
+    .project-meta { margin: 0 0 16px; color: var(--accent); font: 600 12px/1.4 var(--mono); }
+    .project h3 { margin: 0; font-size: clamp(26px, 3.2vw, 39px); line-height: 1.14; letter-spacing: -.025em; font-weight: 600; }
+    .project p { max-width: 620px; margin: 18px 0 0; color: var(--muted); font-size: 17px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 24px; }
+    .tag { padding: 7px 9px; border: 1px solid var(--line); color: var(--muted); font: 500 11px/1 var(--mono); }
+    .project-link { margin-top: 28px; color: var(--ink); text-decoration: none; font: 600 13px/1.3 var(--mono); border-bottom: 1px solid var(--accent); padding-bottom: 4px; }
+    .project-link:hover, .project-link:focus-visible { color: var(--accent); }
+
+    .experience-layout {
+      display: grid;
+      grid-template-columns: minmax(240px, .65fr) minmax(0, 1.35fr);
+      gap: clamp(45px, 9vw, 120px);
+    }
+    .experience-intro { color: var(--muted); font-size: 18px; }
+    .experience-intro strong { color: var(--ink); }
+    .timeline { border-top: 1px solid var(--line); }
+    .role {
+      padding: 28px 0;
+      display: grid;
+      grid-template-columns: 130px minmax(0, 1fr);
+      gap: 24px;
+      border-bottom: 1px solid var(--line);
+    }
+    .role-time { color: var(--muted); font: 500 12px/1.5 var(--mono); }
+    .role h3 { margin: 0; font-size: 20px; line-height: 1.25; }
+    .role-company { margin: 5px 0 0; color: var(--accent); font: 500 13px/1.4 var(--mono); }
+    .role p:last-child { margin: 12px 0 0; color: var(--muted); }
+
+    .skills-layout {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .skill-group { padding: 30px 30px 34px 0; }
+    .skill-group + .skill-group { padding-left: 30px; border-left: 1px solid var(--line); }
+    .skill-group h3 { margin: 0 0 20px; font-size: 18px; }
+    .skill-list { list-style: none; margin: 0; padding: 0; }
+    .skill-list li {
+      padding: 9px 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-top: 1px solid color-mix(in srgb, var(--line) 65%, transparent);
+      color: var(--muted);
+      font: 500 13px/1.3 var(--mono);
+    }
+    .skill-list li::before { content: "/"; color: var(--accent); font-weight: 600; }
+
+    .credentials { margin-top: 48px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+    .credential { min-height: 154px; padding: 24px; background: var(--surface-2); display: flex; flex-direction: column; justify-content: space-between; }
+    .credential small { color: var(--muted); font: 500 11px/1.4 var(--mono); }
+    .credential strong { display: block; margin-top: 24px; font-size: 18px; line-height: 1.3; }
+
+    .contact {
+      padding: clamp(76px, 12vw, 150px) 0;
+      background: var(--code);
+      color: var(--code-ink);
+    }
+    .contact .shell { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(250px, .75fr); gap: 70px; align-items: end; }
+    .contact-label { margin: 0 0 20px; color: #ff8265; font: 600 12px/1.4 var(--mono); }
+    .contact h2 { max-width: 760px; }
+    .contact-copy { max-width: 640px; margin: 24px 0 0; color: var(--code-muted); font-size: 18px; }
+    .contact-actions { display: flex; flex-direction: column; gap: 10px; }
+    .contact-actions .button { width: 100%; background: transparent; color: var(--code-ink); border-color: #40514a; }
+    .contact-actions .button:first-child { background: #ff704f; border-color: #ff704f; color: #111313; }
+    .contact-actions .button:hover, .contact-actions .button:focus-visible { background: var(--code-ink); border-color: var(--code-ink); color: var(--code); }
+
+    footer {
+      padding: 24px 0 calc(24px + env(safe-area-inset-bottom));
+      background: var(--code);
+      color: var(--code-muted);
+      border-top: 1px solid #293530;
+    }
+    .footer-inner {
+      width: min(calc(100% - 40px), var(--max));
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      font: 500 11px/1.5 var(--mono);
+    }
+
+    .toast {
+      position: fixed;
+      right: 18px;
+      bottom: calc(18px + env(safe-area-inset-bottom));
+      z-index: 50;
+      padding: 12px 16px;
+      background: var(--ink);
+      color: var(--bg);
+      border: 1px solid var(--line);
+      font: 500 12px/1.3 var(--mono);
+      opacity: 0;
+      transform: translateY(12px);
+      pointer-events: none;
+      transition: opacity .2s ease, transform .2s ease;
+    }
+    .toast.show { opacity: 1; transform: translateY(0); }
+
+    :focus-visible { outline: 3px solid color-mix(in srgb, var(--accent) 55%, transparent); outline-offset: 3px; }
+
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .terminal { max-width: 560px; }
+      .project { grid-template-columns: 1fr; }
+      .project:nth-child(even) .project-visual { order: 0; }
+      .project-visual { min-height: 270px; }
+      .experience-layout { grid-template-columns: 1fr; gap: 34px; }
+      .contact .shell { grid-template-columns: 1fr; gap: 44px; }
+      .contact-actions { max-width: 470px; }
+    }
+
+    @media (max-width: 680px) {
+      .nav-inner, .shell, .footer-inner { width: min(calc(100% - 28px), var(--max)); }
+      .nav-links { gap: 14px; }
+      .nav-links a:nth-child(2) { display: none; }
+      .nav-status span:last-child { display: none; }
+      .hero { padding-top: 64px; }
+      h1 { font-size: clamp(43px, 14vw, 66px); }
+      .hero-copy { font-size: 18px; }
+      .actions { flex-direction: column; align-items: stretch; }
+      .button { width: 100%; }
+      .section-head { grid-template-columns: 1fr; gap: 18px; }
+      .section-index { margin-top: 0; }
+      .project-body { padding: 28px 23px 34px; }
+      .project p { font-size: 16px; }
+      .role { grid-template-columns: 1fr; gap: 8px; }
+      .skills-layout { grid-template-columns: 1fr; }
+      .skill-group, .skill-group + .skill-group { padding: 26px 0; border-left: 0; }
+      .skill-group + .skill-group { border-top: 1px solid var(--line); }
+      .credentials { grid-template-columns: 1fr; }
+      .contact h2 { font-size: 38px; }
+      .footer-inner { flex-direction: column; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; }
+    }
+
+    @media print {
+      .site-nav, .actions, .contact-actions, .toast { display: none !important; }
+      .hero { min-height: auto; padding-top: 40px; }
+      .section { break-inside: avoid; }
+      .project { break-inside: avoid; }
+      body { background: white; color: black; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to content</a>
+
+  <nav class="site-nav" aria-label="Primary navigation">
+    <div class="nav-inner">
+      <div class="nav-status"><span class="pulse" aria-hidden="true"></span><span>Open to software engineering opportunities</span></div>
+      <div class="nav-links">
+        <a href="#work">Work</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="content">
+    <header class="shell hero">
+      <div>
+        <p class="hero-kicker">Ashfaq Raza · Software Developer</p>
+        <h1>Building useful software.<span>Learning the full stack.</span></h1>
+        <p class="hero-copy">I’m a software developer working with <strong>.NET, SQL Server, JavaScript and responsive web technologies</strong>. I care about clear interfaces, reliable data flows and code that solves a real problem.</p>
+        <div class="actions">
+          <a class="button" href="#work">
+            View selected work
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a class="button secondary" href="Ashfaq_Raza_Resume_2026.pdf" download>
+            Download résumé
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v12m0 0 5-5m-5 5-5-5M5 21h14"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <aside class="terminal" aria-label="Developer profile summary">
+        <div class="terminal-bar"><span>profile.json</span><span class="terminal-dots" aria-hidden="true"><i></i><i></i><i></i></span></div>
+        <div class="terminal-body">
+          <p><span class="prompt">$</span> whoami</p>
+          <p><span class="key">role</span>: <span class="value">"Software Developer"</span></p>
+          <p><span class="key">based_in</span>: <span class="value">"Hospet, India"</span></p>
+          <p><span class="key">stack</span>: [<span class="value">".NET"</span>, <span class="value">"SQL Server"</span>, <span class="value">"JavaScript"</span>]</p>
+          <p><span class="key">languages</span>: [<span class="value">"English"</span>, <span class="value">"Hindi"</span>, <span class="value">"Urdu"</span>]</p>
+          <p class="comment">// ready to build, debug and grow</p>
+        </div>
+      </aside>
+    </header>
+
+    <section class="section" id="work">
+      <div class="shell">
+        <div class="section-head">
+          <p class="section-index">01 / SELECTED WORK</p>
+          <h2>Projects shaped by data, people and practical workflows.</h2>
+        </div>
+
+        <div class="projects">
+          <article class="project">
+            <div class="project-visual">
+              <span class="visual-label">APPLICATION SYSTEM</span>
+              <span class="visual-mark">EMP</span>
+            </div>
+            <div class="project-body">
+              <p class="project-meta">ASP.NET CORE MVC · SQL SERVER</p>
+              <h3>Employee Management & Dynamic Screen Builder</h3>
+              <p>An employee management application with configurable screens and forms, records grids, employee create/update flows and synchronized SQL Server data. Built to turn common admin workflows into clear, reusable interfaces.</p>
+              <div class="tags" aria-label="Technologies"><span class="tag">ASP.NET Core MVC</span><span class="tag">C#</span><span class="tag">SQL Server</span><span class="tag">Visual Studio</span></div>
+            </div>
+          </article>
+
+          <article class="project">
+            <div class="project-visual">
+              <span class="visual-label">DATA ANALYTICS</span>
+              <span class="visual-mark">IBM</span>
+            </div>
+            <div class="project-body">
+              <p class="project-meta">STREAMLIT · DATA ANALYSIS</p>
+              <h3>Supermarket Sales Analytics</h3>
+              <p>A capstone project that turns supermarket sales data into an interactive Streamlit experience, supported by a structured dataset, analysis code and project reports.</p>
+              <div class="tags" aria-label="Technologies"><span class="tag">Python</span><span class="tag">Streamlit</span><span class="tag">Analytics</span><span class="tag">GitHub</span></div>
+              <a class="project-link" href="https://github.com/ashuash2002-ui/IBM-Capstone-Project" target="_blank" rel="noopener noreferrer">Explore repository ↗</a>
+            </div>
+          </article>
+
+          <article class="project">
+            <div class="project-visual">
+              <span class="visual-label">BCA FINAL-YEAR PROJECT</span>
+              <span class="visual-mark">ML</span>
+            </div>
+            <div class="project-body">
+              <p class="project-meta">MACHINE LEARNING · PREDICTION</p>
+              <h3>Diabetes Prediction System</h3>
+              <p>A machine-learning system that estimates diabetes likelihood from patient data, covering data preparation and the core model-building workflow from input to prediction.</p>
+              <div class="tags" aria-label="Technologies"><span class="tag">Machine Learning</span><span class="tag">Data Preparation</span><span class="tag">Predictive Model</span></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="experience">
+      <div class="shell">
+        <div class="section-head">
+          <p class="section-index">02 / EXPERIENCE</p>
+          <h2>Technical growth backed by real business experience.</h2>
+        </div>
+
+        <div class="experience-layout">
+          <div class="experience-intro">
+            <p>I bring a mix of <strong>software development, operational accuracy and client communication</strong>—useful context for building software that works beyond the code editor.</p>
+          </div>
+          <div class="timeline">
+            <article class="role">
+              <div class="role-time">SEP 2026 — NOW</div>
+              <div><h3>Software Developer</h3><p class="role-company">IRIZID Technologies Pvt. Ltd.</p><p>Developing and maintaining .NET applications in Visual Studio, with SQL Server queries and data management in SSMS.</p></div>
+            </article>
+            <article class="role">
+              <div class="role-time">JUL — AUG 2026</div>
+              <div><h3>Software Development Intern</h3><p class="role-company">Cognifyz IT Solutions</p><p>Built responsive interfaces with HTML, CSS and JavaScript, practiced DOM manipulation, debugging and Git-based workflows.</p></div>
+            </article>
+            <article class="role">
+              <div class="role-time">AUG 2025 — SEP 2026</div>
+              <div><h3>Warranty Incharge</h3><p class="role-company">Ashok Leyland</p><p>Managed warranty claims, documentation and cross-team coordination with a focus on timely, accurate resolution.</p></div>
+            </article>
+            <article class="role">
+              <div class="role-time">EARLIER</div>
+              <div><h3>Accounting & Software Sales</h3><p class="role-company">CA Practice · Creative IT Solutions</p><p>Built a foundation in financial accuracy, product demonstrations, customer communication and problem solving.</p></div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="skills">
+      <div class="shell">
+        <div class="section-head">
+          <p class="section-index">03 / TOOLKIT</p>
+          <h2>A growing stack for building end-to-end products.</h2>
+        </div>
+
+        <div class="skills-layout">
+          <div class="skill-group"><h3>Application</h3><ul class="skill-list"><li>.NET / ASP.NET Core MVC</li><li>Visual Studio</li><li>JavaScript ES6</li><li>HTML5 & CSS3</li></ul></div>
+          <div class="skill-group"><h3>Data & cloud</h3><ul class="skill-list"><li>SQL Server / SSMS</li><li>Data analysis</li><li>Machine learning basics</li><li>AWS fundamentals</li></ul></div>
+          <div class="skill-group"><h3>Workflow</h3><ul class="skill-list"><li>Git & GitHub</li><li>Responsive design</li><li>Debugging</li><li>Client communication</li></ul></div>
+        </div>
+
+        <div class="credentials">
+          <div class="credential"><small>EDUCATION</small><strong>Bachelor of Computer Applications<br />Shree Maata Degree College · 2026</strong></div>
+          <div class="credential"><small>CERTIFICATION</small><strong>Cloud Computing (AWS)<br />Udacity</strong></div>
+          <div class="credential"><small>CERTIFICATION</small><strong>Digital Fluency<br />FutureSkills Prime</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="shell">
+        <div>
+          <p class="contact-label">LET’S BUILD SOMETHING USEFUL</p>
+          <h2>Looking for a developer who learns fast and follows through?</h2>
+          <p class="contact-copy">I’m open to software engineering opportunities in India and abroad, and interested in teams where I can contribute while deepening my full-stack skills.</p>
+        </div>
+        <div class="contact-actions">
+          <a class="button" href="mailto:ashuash2002@gmail.com">Email me</a>
+          <a class="button" href="https://www.linkedin.com/in/ashfaq-raza-1b0614369" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+          <a class="button" href="https://github.com/ashfaq-commits" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+          <button class="button" id="copyEmail" type="button">Copy email address</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner"><span>Ashfaq Raza · Software Developer</span><span>Hospet, Karnataka, India</span></div>
+  </footer>
+  <div class="toast" id="toast" role="status" aria-live="polite">Email copied</div>
+
+  <script>
+    (function () {
+      var copyButton = document.getElementById('copyEmail');
+      var toast = document.getElementById('toast');
+      var timer;
+      if (!copyButton) return;
+      copyButton.addEventListener('click', function () {
+        var email = 'ashuash2002@gmail.com';
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(email).then(showToast, fallbackCopy);
+        } else {
+          fallbackCopy();
+        }
+        function fallbackCopy() {
+          var area = document.createElement('textarea');
+          area.value = email;
+          area.setAttribute('readonly', '');
+          area.style.position = 'fixed';
+          area.style.opacity = '0';
+          document.body.appendChild(area);
+          area.select();
+          try { document.execCommand('copy'); } catch (e) {}
+          document.body.removeChild(area);
+          showToast();
+        }
+        function showToast() {
+          clearTimeout(timer);
+          toast.classList.add('show');
+          timer = setTimeout(function () { toast.classList.remove('show'); }, 2200);
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
